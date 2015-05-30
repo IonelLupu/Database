@@ -1,0 +1,22 @@
+{
+    "name": "webtron/database",
+    "type": "library",
+    "description": "SQL Query Builder",
+    "keywords": ["sql","query","builder","database"],
+    "homepage": "https://github.com/JCWolf/Database/",
+    "authors": [
+        {
+            "name": "Johnny Wolf",
+            "email": "wolff_cristy@yahoo.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Webtron\\Database\\": "Database"
+        }
+    }
+}
