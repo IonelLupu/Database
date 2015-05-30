@@ -10,6 +10,7 @@ include '../vendor/autoload.php';
 
 use Webtron\Database\DB;
 
+
 DB::connect([
 	"database" => "app",
 	"host"     => "localhost",
@@ -17,6 +18,7 @@ DB::connect([
 	"password" => "root"
 ]);
 
+DB::resultObject(false);
 ?>
 
 <h2 style="text-align:center">SELECT Statement</h2>

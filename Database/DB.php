@@ -1,6 +1,7 @@
 <?php 
 namespace Webtron\Database;
 
+use PDO;
 use Webtron\Database\Drivers\DriverFactory;
 
 class DB {
@@ -63,12 +64,28 @@ class DB {
 
 	/**
 	 * Change parameter binding option
+	 * 
 	 * @param  boolean $flag 
 	 * @return void        
 	 */
 	public static function useParamBinding( $flag = true ){
 		
 		self::$paramBinding = $flag;
+	}
+
+	/**
+	 * Change parameter binding option
+	 * 
+	 * @param  boolean $flag 
+	 * @return void        
+	 */
+	public static function resultObject( $flag = true ){
+
+		$mode = PDO::FETCH_ASSOC;
+		if( $flag )
+			$mode = PDO::FETCH_OBJ;
+		
+		self::$DB->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , $mode); 
 	}
 
 

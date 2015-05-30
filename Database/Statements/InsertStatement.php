@@ -2,8 +2,9 @@
 
 namespace Webtron\Database\Statements;
 
-use Webtron\Database\QueryBuilder;
+use Webtron\Database\DB;
 use Webtron\Database\Query;
+use Webtron\Database\QueryBuilder;
 use Webtron\Database\StatementContract;
 
 class InsertStatement extends QueryBuilder implements StatementContract{

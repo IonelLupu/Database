@@ -51,7 +51,7 @@ class Query{
 	 */
 	public function __construct($table = ""){
 		
-		$this->table = $table;
+		$this->table        = $table;
 
 		return $this;
 	}
@@ -172,9 +172,10 @@ class Query{
 	 * @param  Array  $columns
 	 * @return QueryBuilder
 	 */
-	public function find( $id, $columns = ['*'] )
-	{
-		$this->where('id', '=', $id);
+	public function find( $id, $columns = ['*'] ,$primaryKey = 'id'){
+
+		$this->where($primaryKey, '=', $id);
+
 		return StatementFactory::make('select',$this,$columns)->executeQuery(false);
 	}
 
