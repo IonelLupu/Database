@@ -9,7 +9,7 @@ abstract class QueryBuilder{
 	 * 
 	 * @var Query
 	 */
-	public $query ;
+	public $query;
 
 	/**
 	 * Create the QueryBuilder
@@ -45,11 +45,11 @@ abstract class QueryBuilder{
 	protected function execute(){
 		$q = $this->final->execute();
 		
-		print_r([
-			"queryString" => $this->final->queryString,
-			"params"      => Query::$params,
-			"error"       => $this->final->errorInfo()
-			]);
+		// print_r([
+		// 	"queryString" => $this->final->queryString,
+		// 	"params"      => Query::$params,
+		// 	"error"       => $this->final->errorInfo()
+		// 	]);
 
 		$this->query->init();
 

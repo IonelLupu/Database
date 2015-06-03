@@ -33,6 +33,7 @@ $posts = DB::table('users')
 			})
 			->get(['users.username','comments.body']);
 pre($posts);
+
 $posts = DB::table('posts')
 			->leftJoin(function($join){
 				$join->table('users')->inner('comments','users.id','=','comments.user_id');
@@ -43,6 +44,22 @@ $posts = DB::table('posts')
 			->get(['posts.title','comments.body','users.username','users.email']);
 pre($posts);
 
+$posts = DB::table('posts')
+			->where('active',true)
+			->where(function($query){
+				$query->where('email','myEmail')
+					  ->orWhere('username','myUser');
+			})
+			->get();
+pre($posts);
+
+$posts = DB::table('posts')
+			->where('email','myEmail')
+			->orWhere('username','myUser')
+			->where('active',true)
+			->get();
+pre($posts);
+die();
 
 // -------------------------------------------------------------------
 

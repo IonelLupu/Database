@@ -43,7 +43,7 @@ trait WHERE {
 		$this->where[$link][] = implode(" ",$data);
 	}
 
-	public function where($column ,$operator = null, $value = null, $link = "AND"){
+	public function where($column ,$operator = null, $value = null, $link = 'AND'){
 
 		// If $column is an array, create a nested where and add the conditions 
 		// as key-value pairs with the equal comparison between
@@ -58,9 +58,9 @@ trait WHERE {
 			}, $link);
 		}
 
-		// If there are only two values passes to the method it means that the operator
+		// If the value is null it means that the operator
 		// is an equal sign and the $value is the $operator's value
-		if (func_num_args() == 2)
+		if ( is_null( $value ) )
 		{
 			list($value, $operator) = [$operator, '='];
 		}
@@ -103,7 +103,7 @@ trait WHERE {
 
 	public function orWhere($column ,$operator = null,$value = null){
 
-		return $this->where($column ,$operator,$value,"OR");
+		return $this->where($column ,$operator, $value, 'OR');
 	}
 
 	public function whereNull($column,$link = 'AND',$not = false){
