@@ -15,8 +15,11 @@
         "php": ">=5.4.0"
     },
     "autoload": {
+        "classmap": ["test/App/" ],
         "psr-4": {
-            "Webtron\\Database\\": "Database"
+            "Webtron\\Database\\Connector\\": "Connector/",
+            "Webtron\\Database\\Query\\": "Query/",
+            "Webtron\\Database\\Model\\": "Model/"
         }
     }
 }

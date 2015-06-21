@@ -8,17 +8,19 @@ function pre($data){
 
 include '../vendor/autoload.php';
 
-use Webtron\Database\DB;
+use Webtron\Database\Connector\Connector as Connector;
 
+use Webtron\Database\Query\Builder as DB;
 
-DB::connect([
+$connector = new Connector([
 	"database" => "app",
 	"host"     => "localhost",
 	"username" => "root",
 	"password" => "root"
 ]);
 
-DB::resultObject(false);
+DB::connect($connector);
+
 ?>
 
 <h2 style="text-align:center">SELECT Statement</h2>
@@ -59,7 +61,6 @@ $posts = DB::table('posts')
 			->where('active',true)
 			->get();
 pre($posts);
-die();
 
 // -------------------------------------------------------------------
 
@@ -125,5 +126,82 @@ DB::table("users")->where("username","test")->delete();
 $users = DB::table("users")->get();
 pre($users);
 
+
+/****************************************************************
+/****************************************************************
+/****************************************************************
+/****************************************************************
+/****************************************************************
+/****************************************************************
+ * *********************  MODEL ********************
+ */
+
+use App\Car;
+use App\Post;
+use App\User;
+use App\Role;
+use App\Country;
+
+// $users = User::all();
+// pre($users);
+
+// $user = User::find(1);
+// pre($user);
+
+// $users = User::where('credits','>',30)->limit(2)->get();
+// pre($users);
+
+// $user = new User;
+// $user->email = 'roegn@example.com';
+// $user->save();
+// pre($user);
+
+// $user = User::find($user->id);
+// $user->delete();
+// pre($user);
+
+// $user = User::create([
+// 		'email' => 'newEmail@example.com'
+// 	]);
+// $user->username = 'new User';
+// $user->save();
+// pre($user);
+
+
+// $user = User::firstOrCreate(['email'=> 'snewEmail@example.com']);
+// pre($user);
+
+// $user = User::firstOrNew(['email'=> 'snewEmail@example.com']);
+// pre($user);
+
+// $user = User::findOrNew(145);
+// pre($user);
+
+// $user = User::destroy(32,37,38);
+// pre($user);
+
+// hasOne
+// $car = User::find(1)->car;
+// pre($car);
+
+// hasMany
+// $posts = User::find(1)->posts;
+// pre($posts);
+
+// belongsTo
+// $user = Post::find(1)->user()->first();
+// pre($user);
+
+// hasManyThrough
+$posts = Country::find(3)->posts;
+pre($posts);
+
+
+// manyToMany
+$roles = User::find(2)->roles;
+pre($roles);
+
+$users = Role::where('name','Pro')->first()->users()->first();
+pre( $users );
 ?>
 </pre>
