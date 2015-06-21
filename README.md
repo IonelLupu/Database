@@ -1,18 +1,29 @@
 Database - Query builder
 =====
 
-## Instalation
+## Instalation using composer
 ```php
-include 'Database/DB.php';
+{
+    "require": {
+        "webtron/database": "dev-master"
+    }
+}
 ```
 ## Set up
 ```php
-DB::connect([
-		"host" 		=> "localhost",
-		"username"	=> "user",
-		"password"	=> "userPass",
-		"database" 	=> "databaseName"
-	]);
+
+use Webtron\Database\Connector\Connector as Connector;
+
+use Webtron\Database\Query\Builder as DB;
+
+$connector = new Connector([
+	"database" => "app",
+	"host"     => "localhost",
+	"username" => "root",
+	"password" => "root"
+]);
+
+DB::connect($connector);
 ```
 
 ### Get all rows from a table
@@ -82,4 +93,21 @@ print_r($posts);
 
 SELECT users.username, comments.body FROM users INNER JOIN comments ON users.id = comments.user_id AND users.id > 2
 ```
+
+### Using the Model
+```php
+
+use Webtron\Database\Model\Model;
+
+class User extends Model {
+
+	protected $table = 'users';
+}
+```
+```php
+
+$users = User::all();
+print_r($users);
+```
+
 
