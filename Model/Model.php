@@ -228,7 +228,7 @@ abstract class Model implements JsonSerializable{
 	}
 
 	public function jsonSerialize(){
-        return (string) $this;
+        return $this->toArray();
     }
 
 }

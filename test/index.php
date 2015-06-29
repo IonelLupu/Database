@@ -20,7 +20,7 @@ $connector = new Connector([
 ]);
 
 DB::connect($connector);
-pre(App\User::all());
+echo json_encode(App\User::all());
 die();
 ?>
 
