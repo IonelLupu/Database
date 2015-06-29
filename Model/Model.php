@@ -3,11 +3,12 @@
 namespace Webtron\Database\Model;
 
 use PDO;
+use JsonSerializable;
 use Webtron\Database\Query\Builder;
 use Webtron\Database\Query\Query;
 
 
-abstract class Model{
+abstract class Model implements JsonSerializable{
 
 	use Relations;
 
@@ -220,9 +221,14 @@ abstract class Model{
 
 		return call_user_func_array([ static::query(), $method ], $parameters);
 	}
+
 	public function __toString(){
 		
 		return json_encode( $this->toArray() ,true );
 	}
+
+	public function jsonSerialize(){
+        return (string) $this;
+    }
 
 }

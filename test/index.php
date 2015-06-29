@@ -20,7 +20,8 @@ $connector = new Connector([
 ]);
 
 DB::connect($connector);
-
+pre(App\User::all());
+die();
 ?>
 
 <h2 style="text-align:center">SELECT Statement</h2>
